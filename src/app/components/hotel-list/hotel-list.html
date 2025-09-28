@@ -1,0 +1,26 @@
+<div class="mb-3">
+  <input type="text" class="form-control" placeholder="Search hotels..." [(ngModel)]="searchText">
+</div>
+
+<div class="row">
+  <div class="col-md-4" *ngFor="let hotel of hotels | filterHotels:searchText">
+    <div class="card mb-3">
+      <img [src]="hotel.imageUrl" [alt]="hotel.name" class="card-img-top">
+      <div class="card-body">
+        <h5 class="card-title">{{ hotel.name }}</h5>
+        <p class="card-text">Location: {{ hotel.location }}</p>
+        <p class="card-text">Price: {{ hotel.price | currency:'INR' }}</p>
+        <p [ngStyle]="{'color': hotel.rating >= 4 ? 'green':'gray'}">Rating: {{ hotel.rating }} ★</p>
+        <p *ngIf="hotel.roomsAvailable > 0; else noRooms">
+          Rooms Available: {{ hotel.roomsAvailable }}
+        </p>
+        <ng-template #noRooms>
+          <p class="text-danger">No Rooms Available</p>
+        </ng-template>
+
+        <a [routerLink]="['/hotel', hotel.id]" class="btn btn-sm btn-primary">View Details</a>
+        <button class="btn btn-sm btn-danger ms-2" (click)="deleteHotel(hotel.id)">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
