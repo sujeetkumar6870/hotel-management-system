@@ -1,6 +1,9 @@
 <div class="mb-3">
   <input type="text" class="form-control" placeholder="Search hotels..." [(ngModel)]="searchText">
+  <!-- <input type="text" class="form-control" placeholder="Search hotels..." [(ngModel)]="searchText">
+  <input type="text" class="form-control" placeholder="Search hotels..." [value]="searchText"> -->
 </div>
+<!-- <div><h5>{{searchText}}</h5></div> -->
 
 <div class="row">
   <div class="col-md-4" *ngFor="let hotel of hotels | filterHotels:searchText">
